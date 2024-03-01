@@ -30,4 +30,36 @@ Step by step examle to make it clear; with two Docker containers: a web server c
 
    This command maps port 80 in the web server container to port 8080 on the host system, allowing you to access the web server from localhost:8080 on the host.
 
+#### Network Drivers (NDs) ; components that are responsible for managing the networking aspects of containers. There few of them with different uses for various needs. Some common network drivers include Bridge ND, Host ND, Overlay ND,Macvlan ND and None ND, so on..
+
+Each network driver has its own configuration options, performance characteristics, and suitability for different use cases. Docker users can choose the appropriate network driver based on their application requirements, scalability needs, and network infrastructure.
+
+Here are some examples I pick for myself;
+
+**1.Bridge Network Driver**; default network driver used by Docker. It creates an internal network bridge on the host system, allowing containers to communicate with each other and with the host. Bridge networks provide isolation and secure communication between containers on the same Docker daemon.
+
+Example usage;
+
+- Create a bridge network; `docker network create my_bridge_network` 
+
+- Run a container attached to the bridge network; `docker run --name my_container --network my_bridge_network -d nginx`
+
+**2.Overlay Network Driver**; enables communication between containers across multiple Docker hosts or nodes in a Docker Swarm cluster. It creates an overlay network that spans multiple hosts, allowing containers to communicate seamlessly regardless of their physical location.
+
+  Example usage;
+
+  - Create an overlay network; `docker network create --driver overlay my_overlay_network`
+  - Run a service attached to the overlay network; `docker service create --name my_service --network my_overlay_network nginx
+
+#### Container Network ; it's a networking infrastructure that allows communication between Docker containers and externaş networks. Container networking enables containers to interact with each other and with external services, facilitating the development of distributed applications and microservices architectures. Here are some of the aspects;
+
+   - Isolation: each container has its own network stack, this isolation ensures that containers cannot interfere with each other's network configurations or communications.
+
+   - Virtual Networks: Docker allows users to create virtual networks to connect containers together or to connect containers to the host network. Virtual networks act as isolated environments, enabling communication between containers within the same network while providing network isolation from external networks.
+
+   - Port Mapping: Docker enables port mapping to expose container ports to the host system or to external networks. Users can specify port mappings when running containers to redirect traffic from specific ports on the host to ports within the container.
+
+   The example above is also an example for container networking!!
+
+
 
