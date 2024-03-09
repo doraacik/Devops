@@ -1,1 +1,5 @@
 node_modules/
+
+.DS_Store
+        db-app/.DS_Store
+        task/.DS_Store
